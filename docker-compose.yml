@@ -1,0 +1,51 @@
+services:
+
+  mysql:
+
+    image: mysql:9
+
+    container_name: mysql_pizzaria
+
+    restart: always
+
+    environment:
+
+      MYSQL_ROOT_PASSWORD: root
+
+      MYSQL_DATABASE: pizzaria
+
+    ports:
+
+      - "3307:3306"
+
+    volumes:
+
+      - mysql_data:/var/lib/mysql
+
+  api:
+
+    build: .
+
+    container_name: fastapi_pizzaria
+
+    restart: always
+
+    ports:
+
+      - "8000:8000"
+
+    environment:
+
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: pizzaria
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+
+    depends_on:
+
+      - mysql
+
+volumes:
+
+  mysql_data:
