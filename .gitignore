@@ -1,0 +1,17 @@
+# Node
+node_modules/
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Ambiente
+.env
+
+# Mac
+.DS_Store
+
+# VS Code
+.vscode/
